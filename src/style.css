@@ -1,0 +1,1466 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Noto+Sans+Khmer:wght@400;600;700&display=swap');
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: #f7faff;
+    color: #24324a;
+    font-family: "Baloo 2", "Noto Sans Khmer", sans-serif
+}
+
+button,
+input {
+    font: inherit
+}
+
+.app {
+    min-height: 100vh
+}
+
+header {
+    height: 76px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    box-shadow: 0 2px 18px #17335b12;
+    position: sticky;
+    top: 0;
+    z-index: 5
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 21px;
+    color: #172554
+}
+
+.brand b {
+    font-size: 30px
+}
+
+.brand i {
+    display: block;
+    color: #2e6cf6;
+    font-size: 14px;
+    font-style: normal
+}
+
+nav {
+    display: flex;
+    gap: 5px
+}
+
+nav button {
+    border: 0;
+    background: transparent;
+    padding: 9px 13px;
+    border-radius: 12px;
+    color: #65728a;
+    cursor: pointer
+}
+
+nav button:hover,
+nav button.on {
+    background: #edf3ff;
+    color: #2e6cf6
+}
+
+main {
+    max-width: 1180px;
+    margin: auto
+}
+
+.hero {
+    margin: 34px 20px 25px;
+    padding: 55px;
+    border-radius: 32px;
+    background: linear-gradient(135deg, #dceaff, #effbff 55%, #fff3d8);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 440px;
+    overflow: hidden
+}
+
+.hero label,
+.title label {
+    color: #2e6cf6;
+    font-weight: 700;
+    letter-spacing: 1px
+}
+
+.hero h1 {
+    font-size: 58px;
+    line-height: .95;
+    margin: 20px 0;
+    color: #172554
+}
+
+.hero h1 span,
+.title h1 span {
+    color: #2e6cf6
+}
+
+.hero p {
+    font-size: 19px;
+    color: #64748b;
+    max-width: 520px
+}
+
+.primary,
+.secondary {
+    border: 0;
+    border-radius: 14px;
+    padding: 13px 20px;
+    margin: 8px 8px 8px 0;
+    cursor: pointer;
+    font-weight: 700
+}
+
+.primary {
+    background: #2e6cf6;
+    color: white;
+    box-shadow: 0 8px 18px #2e6cf633
+}
+
+.secondary {
+    background: white;
+    color: #172554
+}
+
+.stats {
+    display: flex;
+    gap: 30px;
+    margin-top: 22px
+}
+
+.stats b {
+    font-size: 25px;
+    color: #172554
+}
+
+.stats small {
+    display: block;
+    font-size: 14px;
+    color: #718096;
+    font-weight: 400
+}
+
+.art {
+    position: relative;
+    font-size: 65px;
+    text-align: center
+}
+
+.art div {
+    font-size: 160px;
+    margin-top: 120px
+}
+
+.art span {
+    position: absolute;
+    font-size: 100px;
+    bottom: 10px
+}
+
+.art span:first-of-type {
+    left: 20%
+}
+
+.art span:nth-of-type(2) {
+    right: 15%
+}
+
+.art em {
+    position: absolute;
+    background: #fff;
+    padding: 5px 18px;
+    border-radius: 15px;
+    font-style: normal;
+    font-size: 38px;
+    box-shadow: 0 8px 20px #23456b20
+}
+
+.art em:first-of-type {
+    top: 140px;
+    right: 28%;
+    color: #ef4444
+}
+
+.art em:last-of-type {
+    top: 220px;
+    right: 8%;
+    color: #2e6cf6
+}
+
+.section {
+    padding: 25px 20px 40px
+}
+
+.section h2 {
+    font-size: 32px;
+    margin-bottom: 0
+}
+
+.muted,
+.title p {
+    color: #718096
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 20px
+}
+
+.cards article {
+    background: white;
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: 0 8px 24px #27456d0c;
+    border-top: 5px solid #2e6cf6;
+    cursor: pointer
+}
+
+.cards article:nth-child(2) {
+    border-color: #28b86b
+}
+
+.cards article:nth-child(3) {
+    border-color: #ff9f43
+}
+
+.cards article:nth-child(4) {
+    border-color: #8d62e8
+}
+
+.cards article:first-letter {
+    font-size: 35px
+}
+
+.cards h3 {
+    font-size: 23px;
+    margin: 8px 0
+}
+
+.cards p {
+    color: #718096;
+    min-height: 55px
+}
+
+.cards b {
+    color: #2e6cf6
+}
+
+.progress {
+    margin: 5px 20px 35px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px
+}
+
+.progress>span {
+    font-size: 36px
+}
+
+.progress div {
+    min-width: 220px
+}
+
+.progress div b,
+.progress div small {
+    display: block
+}
+
+.progress div small {
+    color: #718096
+}
+
+.progress i {
+    height: 12px;
+    background: #e8edf5;
+    border-radius: 20px;
+    overflow: hidden;
+    flex: 1
+}
+
+.progress u {
+    display: block;
+    height: 100%;
+    background: #2e6cf6;
+    border-radius: 20px;
+    text-decoration: none
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 22px
+}
+
+.title h1 {
+    font-size: 48px;
+    margin: 4px 0
+}
+
+.title input {
+    width: 280px;
+    padding: 13px;
+    border: 1px solid #dce4ef;
+    border-radius: 13px;
+    outline: none
+}
+
+.lesson {
+    display: grid;
+    grid-template-columns: 1fr .9fr;
+    gap: 22px
+}
+
+.letters {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px
+}
+
+.letters button {
+    border: 2px solid transparent;
+    background: #fff;
+    border-radius: 17px;
+    padding: 13px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px #28466d0a
+}
+
+.letters button:hover,
+.letters button.sel {
+    border-color: #a8c4ff;
+    background: #f0f5ff
+}
+
+.letters b {
+    display: block;
+    color: #2e6cf6;
+    font-size: 31px
+}
+
+.letters small {
+    color: #718096
+}
+
+.lesson-card,
+.phonics,
+.quiz {
+    background: #fff;
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0 10px 28px #28466d10
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    gap: 15px
+}
+
+.top>strong {
+    background: #eaf1ff;
+    color: #2e6cf6;
+    font-size: 60px;
+    width: 85px;
+    height: 85px;
+    display: grid;
+    place-items: center;
+    border-radius: 20px
+}
+
+.top h2 {
+    margin: 0
+}
+
+.top p {
+    margin: 0;
+    color: #718096
+}
+
+.top button {
+    margin-left: auto;
+    border: 0;
+    background: #eef4ff;
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    cursor: pointer
+}
+
+.picture {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: #fff7e7;
+    padding: 18px;
+    border-radius: 18px;
+    margin: 20px 0
+}
+
+.picture span {
+    font-size: 70px
+}
+
+.picture h2 {
+    margin: 0;
+    font-size: 30px
+}
+
+.picture p {
+    margin: 0;
+    font-family: "Noto Sans Khmer"
+}
+
+.example {
+    background: #f5f8fc;
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px
+}
+
+.example small {
+    font-family: "Noto Sans Khmer";
+    color: #718096
+}
+
+.wide {
+    width: 100%
+}
+
+.phonics {
+    max-width: 650px;
+    margin: auto;
+    text-align: center;
+    padding: 40px
+}
+
+.phonics>strong {
+    font-size: 120px;
+    color: #2e6cf6;
+    line-height: 1
+}
+
+.phonics h2 {
+    font-size: 38px;
+    margin: 5px
+}
+
+.phonics>div {
+    font-size: 32px;
+    margin: 20px
+}
+
+.phonics aside {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px
+}
+
+.phonics aside button {
+    border: 0;
+    background: #f0f4fa;
+    border-radius: 12px;
+    padding: 9px 13px;
+    cursor: pointer
+}
+
+.tip {
+    max-width: 650px;
+    margin: 18px auto;
+    background: #fff7d9;
+    padding: 15px;
+    border-radius: 15px;
+    font-family: "Noto Sans Khmer"
+}
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px
+}
+
+.categories article {
+    background: #fff;
+    padding: 22px;
+    border-radius: 22px
+}
+
+.categories article>div {
+    font-size: 40px
+}
+
+.categories h2 {
+    font-size: 25px;
+    margin: 5px 0 12px
+}
+
+.categories button {
+    border: 1px solid #dce4ef;
+    background: #f8faff;
+    border-radius: 11px;
+    padding: 8px;
+    margin: 4px;
+    cursor: pointer
+}
+
+.quiz {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+    padding: 35px
+}
+
+.quiz h2 {
+    font-size: 30px
+}
+
+.answers {
+    display: grid;
+    gap: 11px;
+    margin: 20px
+}
+
+.answers button {
+    border: 2px solid #e0e6ef;
+    background: #fff;
+    border-radius: 14px;
+    padding: 13px;
+    cursor: pointer;
+    font-size: 18px
+}
+
+.answers .correct {
+    background: #e7faee;
+    border-color: #45c47d
+}
+
+.answers .wrong {
+    background: #fff0f0;
+    border-color: #ff7d7d
+}
+
+footer {
+    margin-top: 40px;
+    padding: 30px 6%;
+    background: #172554;
+    color: white;
+    text-align: center
+}
+
+@media(max-width:900px) {
+    nav {
+        overflow: auto
+    }
+
+    .hero {
+        grid-template-columns: 1fr
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    .lesson {
+        grid-template-columns: 1fr
+    }
+
+    .categories {
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media(max-width:620px) {
+    header {
+        height: auto;
+        flex-direction: column;
+        padding: 10px
+    }
+
+    .hero {
+        padding: 35px 25px
+    }
+
+    .hero h1 {
+        font-size: 45px
+    }
+
+    .cards,
+    .categories {
+        grid-template-columns: 1fr
+    }
+
+    .letters {
+        grid-template-columns: repeat(4, 1fr)
+    }
+
+    .title {
+        flex-direction: column;
+        align-items: stretch
+    }
+
+    .title input {
+        width: 100%
+    }
+
+    .title h1 {
+        font-size: 40px
+    }
+
+    .progress {
+        flex-wrap: wrap
+    }
+
+    .progress i {
+        min-width: 180px
+    }
+}
+
+/* =========================================================
+   VOWEL PAGE
+   ========================================================= */
+
+.vowel-section {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 30px rgba(30, 60, 100, 0.08);
+}
+
+.vowel-section-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.vowel-big-icon {
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 20px;
+
+  background: #edf4ff;
+
+  font-size: 36px;
+}
+
+.vowel-section-header h2 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.vowel-section-header p {
+  margin: 5px 0 0;
+  color: #718096;
+}
+
+
+/* Vowel list */
+
+.vowel-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+
+/* Individual vowel */
+
+.vowel-item {
+  display: flex;
+  gap: 16px;
+
+  padding: 18px;
+
+  border: 1px solid #e5eaf2;
+
+  border-radius: 18px;
+
+  background: #fafcff;
+
+  transition: 0.2s;
+}
+
+.vowel-item:hover {
+  transform: translateY(-2px);
+  border-color: #bdd0f8;
+}
+
+
+/* IPA sound */
+
+.vowel-sound {
+  min-width: 70px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 18px;
+
+  background: #2e6cf6;
+  color: white;
+
+  font-size: 25px;
+  font-weight: 800;
+}
+
+
+/* Information */
+
+.vowel-info {
+  flex: 1;
+}
+
+.vowel-info h3 {
+  margin: 0 0 4px;
+  font-size: 20px;
+}
+
+.vowel-info > span {
+  display: inline-block;
+
+  padding: 4px 9px;
+
+  border-radius: 7px;
+
+  background: #eef2f7;
+
+  color: #64748b;
+
+  font-size: 12px;
+}
+
+
+/* Example words */
+
+.vowel-words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+
+  margin-top: 12px;
+}
+
+.vowel-words button {
+  border: 1px solid #dce4ef;
+
+  background: white;
+
+  border-radius: 10px;
+
+  padding: 7px 10px;
+
+  cursor: pointer;
+
+  color: #26364d;
+}
+
+.vowel-words button:hover {
+  background: #edf4ff;
+  border-color: #b8cdf8;
+}
+
+.vowel-words strong {
+  margin-left: 3px;
+}
+
+.vowel-words small {
+  display: block;
+
+  color: #718096;
+
+  font-family: "Noto Sans Khmer";
+  font-size: 11px;
+}
+
+
+/* Tip */
+
+.vowel-tip {
+  display: flex;
+  gap: 15px;
+
+  padding: 20px;
+
+  border-radius: 20px;
+
+  background: #fff8dc;
+
+  margin-top: 10px;
+}
+
+.tip-icon {
+  font-size: 32px;
+}
+
+.vowel-tip h3 {
+  margin: 0 0 5px;
+}
+
+.vowel-tip p {
+  margin: 4px 0;
+
+  color: #71652c;
+}
+
+.vowel-tip .khmer {
+  font-family: "Noto Sans Khmer";
+}
+
+
+/* Mobile */
+
+@media (max-width: 800px) {
+
+  .vowel-list {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .vowel-item {
+    flex-direction: column;
+  }
+
+  .vowel-sound {
+    width: 70px;
+  }
+
+}
+
+/* =========================================================
+   DIPHTHONGS PAGE
+   ========================================================= */
+
+.diphthong-intro {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    padding: 24px;
+
+    margin-bottom: 25px;
+
+    border-radius: 24px;
+
+    background: linear-gradient(
+        135deg,
+        #fff1fb,
+        #eef5ff
+    );
+
+    box-shadow: 0 8px 25px rgba(40, 70, 110, 0.06);
+}
+
+.diphthong-icon {
+    width: 80px;
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 22px;
+
+    background: white;
+
+    font-size: 42px;
+
+    flex-shrink: 0;
+}
+
+.diphthong-intro h2 {
+    margin: 0 0 5px;
+}
+
+.diphthong-intro p {
+    margin: 5px 0;
+
+    color: #64748b;
+}
+
+.diphthong-intro .khmer {
+    font-family: "Noto Sans Khmer";
+}
+
+
+/* Cards */
+
+.diphthong-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.diphthong-card {
+    background: white;
+
+    padding: 24px;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 10px 30px rgba(40, 70, 110, 0.08);
+
+    transition: 0.2s;
+}
+
+.diphthong-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(40, 70, 110, 0.12);
+}
+
+
+/* IPA Sound */
+
+.diphthong-sound {
+    width: 90px;
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: #edf4ff;
+
+    color: #2e6cf6;
+
+    font-size: 30px;
+
+    font-weight: 800;
+
+    margin-bottom: 15px;
+}
+
+.diphthong-card h2 {
+    margin: 0 0 12px;
+
+    font-size: 22px;
+}
+
+
+/* Spelling */
+
+.diphthong-spelling {
+    display: flex;
+
+    gap: 6px;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+
+    font-size: 13px;
+}
+
+.diphthong-spelling span {
+    color: #718096;
+}
+
+.diphthong-spelling strong {
+    padding: 5px 9px;
+
+    border-radius: 7px;
+
+    background: #f1f5f9;
+
+    color: #475569;
+}
+
+
+/* Examples */
+
+.diphthong-examples {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 8px;
+
+    margin-bottom: 15px;
+}
+
+.diphthong-examples button {
+    border: 1px solid #e2e8f0;
+
+    background: #f8fafc;
+
+    border-radius: 12px;
+
+    padding: 10px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.diphthong-examples button:hover {
+    background: #edf4ff;
+
+    border-color: #bdd0f8;
+}
+
+.diphthong-examples strong {
+    color: #24324a;
+}
+
+.diphthong-examples small {
+    display: block;
+
+    margin-left: 3px;
+
+    margin-top: 3px;
+
+    color: #718096;
+
+    font-family: "Noto Sans Khmer";
+
+    font-size: 11px;
+}
+
+
+/* Hear button */
+
+.diphthong-hear {
+    width: 100%;
+
+    border: 0;
+
+    padding: 11px;
+
+    border-radius: 12px;
+
+    background: #edf4ff;
+
+    color: #2e6cf6;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.diphthong-hear:hover {
+    background: #dce9ff;
+}
+
+
+/* Learning Tip */
+
+.diphthong-tip {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background: #fff8dc;
+}
+
+.diphthong-tip h3 {
+    margin: 0 0 5px;
+}
+
+.diphthong-tip p {
+    margin: 4px 0;
+
+    color: #71652c;
+}
+
+.diphthong-tip .khmer {
+    font-family: "Noto Sans Khmer";
+}
+
+
+/* Responsive */
+
+@media (max-width: 1000px) {
+
+    .diphthong-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .diphthong-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .diphthong-intro {
+        align-items: flex-start;
+    }
+
+    .diphthong-examples {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =====================================================
+   CONSONANTS PAGE
+   ===================================================== */
+
+.consonant-intro {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    padding: 24px;
+    margin-bottom: 28px;
+
+    border-radius: 24px;
+
+    background: linear-gradient(
+        135deg,
+        #eef5ff,
+        #f3f0ff
+    );
+
+    box-shadow:
+        0 8px 25px rgba(30, 60, 100, .06);
+}
+
+.consonant-icon {
+    width: 80px;
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 22px;
+
+    background: white;
+
+    font-size: 40px;
+
+    flex-shrink: 0;
+}
+
+.consonant-intro h2 {
+    margin: 0 0 5px;
+}
+
+.consonant-intro p {
+    margin: 5px 0;
+
+    color: #64748b;
+}
+
+.consonant-intro .khmer {
+    font-family: "Noto Sans Khmer";
+}
+
+
+/* Group */
+
+.consonant-group {
+    margin-bottom: 35px;
+}
+
+.consonant-group-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+}
+
+.consonant-group-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: #edf4ff;
+
+    font-size: 28px;
+}
+
+.consonant-group-title h2 {
+    margin: 0;
+}
+
+.consonant-group-title p {
+    margin: 4px 0;
+
+    color: #718096;
+}
+
+
+/* Grid */
+
+.consonant-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+/* Card */
+
+.consonant-card {
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 8px 25px rgba(30, 60, 100, .08);
+
+    transition: .2s;
+}
+
+.consonant-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(30, 60, 100, .12);
+}
+
+
+/* IPA */
+
+.consonant-sound {
+    width: 75px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: #edf4ff;
+
+    color: #2e6cf6;
+
+    font-size: 28px;
+
+    font-weight: 800;
+
+    margin-bottom: 14px;
+}
+
+.consonant-card h2 {
+    margin: 0 0 12px;
+
+    font-size: 21px;
+}
+
+
+/* Spelling */
+
+.consonant-spelling {
+    margin-bottom: 15px;
+}
+
+.consonant-spelling span {
+    color: #718096;
+
+    font-size: 13px;
+}
+
+.consonant-spelling strong {
+    display: inline-block;
+
+    margin-left: 5px;
+
+    padding: 5px 9px;
+
+    border-radius: 7px;
+
+    background: #f1f5f9;
+
+    color: #475569;
+
+    font-size: 13px;
+}
+
+
+/* Examples */
+
+.consonant-examples {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 8px;
+
+    margin-bottom: 15px;
+}
+
+.consonant-examples button {
+    border: 1px solid #e2e8f0;
+
+    background: #f8fafc;
+
+    border-radius: 12px;
+
+    padding: 10px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.consonant-examples button:hover {
+    background: #edf4ff;
+
+    border-color: #bdd0f8;
+}
+
+.consonant-examples strong {
+    margin-left: 3px;
+}
+
+.consonant-examples small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #718096;
+
+    font-family: "Noto Sans Khmer";
+
+    font-size: 11px;
+}
+
+
+/* Hear button */
+
+.consonant-hear {
+    width: 100%;
+
+    border: 0;
+
+    padding: 11px;
+
+    border-radius: 12px;
+
+    background: #edf4ff;
+
+    color: #2e6cf6;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.consonant-hear:hover {
+    background: #dce9ff;
+}
+
+
+/* Tip */
+
+.consonant-tip {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background: #fff8dc;
+}
+
+.consonant-tip h3 {
+    margin: 0 0 5px;
+}
+
+.consonant-tip p {
+    margin: 4px 0;
+
+    color: #71652c;
+}
+
+.consonant-tip .khmer {
+    font-family: "Noto Sans Khmer";
+}
+
+
+/* Responsive */
+
+@media (max-width: 1000px) {
+
+    .consonant-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .consonant-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .consonant-intro {
+        align-items: flex-start;
+    }
+
+    .consonant-examples {
+        grid-template-columns: 1fr;
+    }
+
+}
