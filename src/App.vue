@@ -145,78 +145,92 @@ const confirmLogout = () => {
     <div class="app">
     <!-- ========================================== SIDE MENU========================================== -->
         <!-- LEFT SIDEBAR -->
-         <aside v-if="isLoggedIn && page !== 'logout'" class="left-sidebar">
-        <!-- <aside class="left-sidebar"> -->
+         <!-- Mobile menu button -->
+        <button
+            v-if="isLoggedIn"
+            class="mobile-menu-button"
+            @click="sidebarOpen = !sidebarOpen"
+        >
+            {{ sidebarOpen ? '✕' : '☰' }}
+        </button>
+        
+        
+        <!-- Overlay -->
+        <div
+            v-if="sidebarOpen"
+            class="sidebar-overlay"
+            @click="sidebarOpen = false"
+        ></div>
+        
+        
+        <!-- Sidebar -->
+        <aside
+            class="left-sidebar"
+            :class="{ 'sidebar-open': sidebarOpen }"
+        >
             <!-- Logo -->
             <div class="sidebar-logo">
-                <div class="logo-icon">🌈</div>
-
-                <span class="logo-text">
-                    Happy English Kids
-                </span>
+                🌈
+                <span>Happy English Kids</span>
             </div>
-
-            <!-- MENU LIST -->
+        
+            <!-- Menu -->
             <ul class="menu-list">
-
-                <li :class="{ active: page === 'home' }" @click="go('home')">
-                    🏠 <span>Home</span>
+        
+                <li @click="go('home')">
+                    🏠
+                    <span>Home</span>
                 </li>
-
-                <li :class="{ active: page === 'alphabet' }" @click="go('alphabet')">
-                    🔤 <span>A–Z Alphabet</span>
+        
+                <li @click="go('alphabet')">
+                    🔤
+                    <span>A–Z</span>
                 </li>
-
-                <li :class="{ active: page === 'vowels' }" @click="go('vowels')">
-                    🔡 <span>Vowels</span>
+        
+                <li @click="go('vowels')">
+                    🔡
+                    <span>Vowels</span>
                 </li>
-
-                <li :class="{ active: page === 'diphthongs' }" @click="go('diphthongs')">
-                    🔊 <span>Diphthongs</span>
+        
+                <li @click="go('diphthongs')">
+                    🔊
+                    <span>Diphthongs</span>
                 </li>
-
-                <li :class="{ active: page === 'consonants' }" @click="go('consonants')">
-                    🔤 <span>Consonants</span>
+        
+                <li @click="go('consonants')">
+                    🔤
+                    <span>Consonants</span>
                 </li>
-
-                <li :class="{ active: page === 'phonics' }" @click="go('phonics')">
-                    🔊 <span>Phonics</span>
+        
+                <li @click="go('phonics')">
+                    🔊
+                    <span>Phonics</span>
                 </li>
-
-                <li :class="{ active: page === 'vocab' }" @click="go('vocab')">
-                    📚 <span>Vocabulary</span>
+        
+                <li @click="go('vocab')">
+                    📚
+                    <span>Vocabulary</span>
                 </li>
-
-                <li :class="{ active: page === 'games' }" @click="go('games')">
-                    🎮 <span>Games</span>
+        
+                <li @click="go('games')">
+                    🎮
+                    <span>Games</span>
                 </li>
-
+        
             </ul>
-
-
-            <!-- LOGOUT -->
+        
+            <!-- Logout -->
             <div class="sidebar-footer">
+        
                 <button @click="go('logout')">
-                    🚪
-                    <span>Logout</span>
+                    🚪 Logout
                 </button>
+        
             </div>
-
+        
         </aside>
-
-        <!-- Mobile overlay -->
-        <div v-if="isLoggedIn && sidebarOpen" class="sidebar-overlay" @click="sidebarOpen = false"></div>
-
-
-        <!-- Mobile menu button -->
-        <button v-if="isLoggedIn" class="mobile-menu-button" @click="sidebarOpen = !sidebarOpen">
-            ☰
-        </button>
         <main>
-            <!-- ================================
-     HAPPY ENGLISH KIDS LOGIN
-     ================================ -->
-
+            <!-- ================================ HAPPY ENGLISH KIDS LOGIN ================================ -->
             <section v-if="page === 'login'" class="login-page">
 
                 <!-- Background decorations -->
@@ -404,11 +418,7 @@ const confirmLogout = () => {
                 </div>
 
             </section>
-
-            <!-- ==========================================
-     LOGOUT CONFIRMATION PAGE
-     ========================================== -->
-
+            
             <section v-if="page === 'logout'" class="logout-page">
 
                 <div class="logout-card">
@@ -454,7 +464,7 @@ const confirmLogout = () => {
                 </div>
 
             </section>
-
+            
             <section v-if="page === 'home'" class="hero">
                 <div><label>✨ LEARN • PLAY • SPEAK • READ</label>
                     <h1>English learning<br><span>made fun!</span></h1>
@@ -467,7 +477,7 @@ const confirmLogout = () => {
                 </div>
                 <div class="art">☀️<div>📖</div><span>👧</span><span>👦</span><em>A</em><em>B</em></div>
             </section>
-
+            
             <section v-if="page === 'home'" class="section">
                 <h2>What do you want to learn?</h2>
                 <p class="muted">Choose an activity and start learning.</p>
@@ -505,11 +515,12 @@ const confirmLogout = () => {
                     </article>
                 </div>
             </section>
+            
             <section v-if="page === 'home'" class="progress"><span>🏆</span>
                 <div><b>Your learning progress</b><small>Keep learning every day!</small></div><i><u
                         :style="{ width: progress + '%' }"></u></i><strong>{{ progress }}%</strong>
             </section>
-
+            
             <section v-if="page === 'alphabet'" class="section">
                 <div class="title">
                     <div><label>ENGLISH PHONICS</label>
@@ -541,7 +552,7 @@ const confirmLogout = () => {
                     </article>
                 </div>
             </section>
-
+            
             <section v-if="page === 'phonics'" class="section">
                 <div class="title">
                     <div><label>SOUND PRACTICE</label>
@@ -710,8 +721,7 @@ const confirmLogout = () => {
                 </div>
 
             </section>
-            <!-- ==================== END VOWEL PAGE ==================== -->
-
+            
             <!-- ==================== DIPHTHONGS PAGE ==================== -->
             <section v-if="page === 'diphthongs'" class="section">
 
@@ -843,8 +853,7 @@ const confirmLogout = () => {
                 </div>
 
             </section>
-            <!-- ==================== END DIPHTHONGS PAGE ==================== -->
-
+            
             <!-- ==================== CONSONANTS SECTION ===================== -->
             <section v-if="page === 'consonants'" class="section">
 
@@ -983,7 +992,6 @@ const confirmLogout = () => {
                 </div>
 
             </section>
-            <!-- ======= END CONSONANTS SECTION =============== -->
         </main>
         <footer>🌈 <b>Happy English Kids</b> — Learn English together! 💛</footer>
     </div>
