@@ -6,11 +6,26 @@ import {
     quiz,
     pronunciationLessons
 } from './data'
-const page = ref('home'), selected = ref(letters[0]), search = ref('')
+const page = ref('login'), selected = ref(letters[0]), search = ref('')
 const qi = ref(0), score = ref(0), answered = ref(false), answer = ref('')
 const progress = ref(Number(localStorage.getItem('happyEnglishProgress') || 0))
 const filtered = computed(() => letters.filter(x => x.letter.toLowerCase().includes(search.value.toLowerCase()) || x.word.toLowerCase().includes(search.value.toLowerCase())))
-function go(p) { page.value = p; scrollTo({ top: 0, behavior: 'smooth' }) }
+// function go(p) { page.value = p; scrollTo({ top: 0, behavior: 'smooth' }) }
+const go = (newPage) => {
+
+    if (!isLoggedIn.value) {
+
+        page.value = 'login'
+
+        return
+    }
+
+    page.value = newPage
+
+    // Close sidebar on mobile
+    sidebarOpen.value = false
+
+}
 const speak = (text) => {
     if (!text) return
 
@@ -39,21 +54,96 @@ const playSound = (sound) => {
         console.error('Cannot play sound:', error)
     })
 }
-// const playSound = (sound) => {
-//     const audio = new Audio(
-//         `/sounds/consonants/${sound}.mp3`
-//     )
-
-//     audio.currentTime = 0
-//     audio.play()
-// }
 function openLetter(x) { selected.value = x; page.value = 'alphabet'; progress.value = Math.max(progress.value, Math.round((x.letter.charCodeAt(0) - 64) / 26 * 100)); localStorage.setItem('happyEnglishProgress', progress.value) }
 function choose(x) { if (answered.value) return; answer.value = x; answered.value = true; if (x === quiz[qi.value].answer) score.value++ }
 function next() { qi.value = qi.value < quiz.length - 1 ? qi.value + 1 : 0; answered.value = false; answer.value = '' }
+
+const username = ref('ADMIN')
+const password = ref('ADMIN')
+
+const showPassword = ref(false)
+const rememberMe = ref(false)
+
+const isLoggedIn = ref(false)
+
+const loginError = ref('')
+
+
+const login = () => {
+
+    loginError.value = ''
+
+    if (
+        username.value === 'ADMIN' &&
+        password.value === 'ADMIN'
+    ) {
+
+        isLoggedIn.value = true
+
+        if (rememberMe.value) {
+            localStorage.setItem(
+                'happyEnglishAdmin',
+                'true'
+            )
+        } else {
+            sessionStorage.setItem(
+                'happyEnglishAdmin',
+                'true'
+            )
+        }
+
+        page.value = 'home'
+
+    } else {
+
+        loginError.value =
+            'Invalid username or password.'
+
+    }
+}
+
+
+const forgotPassword = () => {
+
+    alert(
+        'Please contact the system administrator.'
+    )
+
+}
+const sidebarOpen = ref(false)
+const confirmLogout = () => {
+
+    // Remove login session
+    localStorage.removeItem(
+        'happyEnglishAdmin'
+    )
+
+    sessionStorage.removeItem(
+        'happyEnglishAdmin'
+    )
+
+    // Update login state
+    isLoggedIn.value = false
+
+    // Go to login page
+    page.value = 'login'
+
+    // Clear login form
+    username.value = 'ADMIN'
+    password.value = 'ADMIN'
+
+    // Reset password visibility
+    showPassword.value = false
+
+    // Reset remember me
+    rememberMe.value = false
+
+}
+
 </script>
 <template>
     <div class="app">
-        <header>
+        <!-- <header v-if="isLoggedIn">
             <div class="brand" @click="go('home')"><b>🌈</b><strong>Happy English <i>Kids</i></strong></div>
             <nav><button :class="{ on: page === 'home' }" @click="go('home')">🏠 Home</button><button
                     :class="{ on: page === 'alphabet' }" @click="go('alphabet')">🔤 A–Z</button><button
@@ -70,9 +160,321 @@ function next() { qi.value = qi.value < quiz.length - 1 ? qi.value + 1 : 0; answ
                     🔡 Consonants
                 </button>
             </nav>
-        </header>
+        </header> -->
+        <!-- ==========================================
+     SIDE MENU
+     ========================================== -->
+        <!-- LEFT SIDEBAR -->
+         <aside v-if="isLoggedIn && page !== 'logout'" class="left-sidebar">
+        <!-- <aside class="left-sidebar"> -->
+            <!-- Logo -->
+            <div class="sidebar-logo">
+                <div class="logo-icon">🌈</div>
 
+                <span class="logo-text">
+                    Happy English Kids
+                </span>
+            </div>
+
+            <!-- MENU LIST -->
+            <ul class="menu-list">
+
+                <li :class="{ active: page === 'home' }" @click="go('home')">
+                    🏠 <span>Home</span>
+                </li>
+
+                <li :class="{ active: page === 'alphabet' }" @click="go('alphabet')">
+                    🔤 <span>A–Z Alphabet</span>
+                </li>
+
+                <li :class="{ active: page === 'vowels' }" @click="go('vowels')">
+                    🔡 <span>Vowels</span>
+                </li>
+
+                <li :class="{ active: page === 'diphthongs' }" @click="go('diphthongs')">
+                    🔊 <span>Diphthongs</span>
+                </li>
+
+                <li :class="{ active: page === 'consonants' }" @click="go('consonants')">
+                    🔤 <span>Consonants</span>
+                </li>
+
+                <li :class="{ active: page === 'phonics' }" @click="go('phonics')">
+                    🔊 <span>Phonics</span>
+                </li>
+
+                <li :class="{ active: page === 'vocab' }" @click="go('vocab')">
+                    📚 <span>Vocabulary</span>
+                </li>
+
+                <li :class="{ active: page === 'games' }" @click="go('games')">
+                    🎮 <span>Games</span>
+                </li>
+
+            </ul>
+
+
+            <!-- LOGOUT -->
+            <div class="sidebar-footer">
+                <button @click="go('logout')">
+                    🚪
+                    <span>Logout</span>
+                </button>
+            </div>
+
+        </aside>
+
+        <!-- Mobile overlay -->
+        <div v-if="isLoggedIn && sidebarOpen" class="sidebar-overlay" @click="sidebarOpen = false"></div>
+
+
+        <!-- Mobile menu button -->
+        <button v-if="isLoggedIn" class="mobile-menu-button" @click="sidebarOpen = !sidebarOpen">
+            ☰
+        </button>
         <main>
+            <!-- ================================
+     HAPPY ENGLISH KIDS LOGIN
+     ================================ -->
+
+            <section v-if="page === 'login'" class="login-page">
+
+                <!-- Background decorations -->
+                <div class="cloud cloud-1">☁️</div>
+                <div class="cloud cloud-2">☁️</div>
+
+                <div class="star star-1">⭐</div>
+                <div class="star star-2">⭐</div>
+                <div class="star star-3">✨</div>
+
+                <div class="abc-block block-a">A</div>
+                <div class="abc-block block-b">B</div>
+                <div class="abc-block block-c">C</div>
+
+                <!-- Rainbow -->
+                <div class="login-rainbow">
+                    🌈
+                </div>
+
+
+                <!-- Main Login Container -->
+                <div class="login-wrapper">
+
+                    <!-- Logo -->
+                    <div class="login-brand">
+
+                        <div class="brand-rainbow">
+                            🌈
+                        </div>
+
+                        <div class="brand-name">
+                            <span class="happy">Happy</span>
+                            <span class="english">English</span>
+                            <span class="kids">Kids</span>
+                        </div>
+
+                        <div class="brand-tagline">
+                            ✨ Learn • Play • Grow ✨
+                        </div>
+
+                    </div>
+
+
+                    <!-- Login Card -->
+                    <div class="login-card">
+
+                        <!-- Lock -->
+                        <div class="login-icon">
+                            🔐
+                        </div>
+
+
+                        <h1>Admin Login</h1>
+
+                        <p class="login-welcome">
+                            Welcome back! Please login to continue <strong>Happy English Kids</strong>.
+                        </p>
+
+
+                        <!-- Login Form -->
+                        <form @submit.prevent="login">
+
+                            <!-- Username -->
+                            <div class="login-input-group">
+
+                                <label>
+                                    Username
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <span class="input-icon">
+                                        👤
+                                    </span>
+
+                                    <input v-model="username" type="text" placeholder="Enter username"
+                                        autocomplete="username" required />
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Password -->
+                            <div class="login-input-group">
+
+                                <label>
+                                    Password
+                                </label>
+
+                                <div class="input-wrapper">
+
+                                    <span class="input-icon">
+                                        🔒
+                                    </span>
+
+                                    <input v-model="password" :type="showPassword ? 'text' : 'password'"
+                                        placeholder="Enter password" autocomplete="current-password" required />
+
+                                    <button type="button" class="show-password" @click="showPassword = !showPassword">
+                                        {{ showPassword ? '🙈' : '👁️' }}
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Remember / Forgot -->
+                            <div class="login-options">
+
+                                <label class="remember">
+
+                                    <input v-model="rememberMe" type="checkbox" />
+
+                                    <span>Remember me</span>
+
+                                </label>
+
+                                <button type="button" class="forgot-password" @click="forgotPassword">
+                                    Forgot password?
+                                </button>
+
+                            </div>
+
+
+                            <!-- Error -->
+                            <div v-if="loginError" class="login-error">
+                                ⚠️ {{ loginError }}
+                            </div>
+
+
+                            <!-- Login Button -->
+                            <button type="submit" class="login-button">
+                                <span>🔐</span>
+                                Login
+                            </button>
+
+                        </form>
+
+
+                        <!-- Admin Access -->
+                        <div class="admin-access">
+
+                            <span></span>
+
+                            <div>
+                                🛡️ Admin access only
+                            </div>
+
+                            <span></span>
+
+                        </div>
+
+
+                        <!-- Children -->
+                        <div class="children">
+
+                            <div class="child child-girl">
+                                👧
+                            </div>
+
+                            <div class="child child-boy">
+                                👦
+                            </div>
+
+                            <div class="child child-glasses">
+                                🧑‍🏫
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Bottom decorations -->
+                <div class="bottom-books">
+                    📚
+                </div>
+
+                <div class="bottom-apple">
+                    🍎
+                </div>
+
+            </section>
+
+            <!-- ==========================================
+     LOGOUT CONFIRMATION PAGE
+     ========================================== -->
+
+            <section v-if="page === 'logout'" class="logout-page">
+
+                <div class="logout-card">
+
+                    <!-- Icon -->
+                    <div class="logout-icon">
+                        👋
+                    </div>
+
+
+                    <h1>
+                        See You Soon!
+                    </h1>
+
+
+                    <p>
+                        Are you sure you want to logout
+                        from <strong>Happy English Kids</strong>?
+                    </p>
+
+
+                    <!-- Buttons -->
+                    <div class="logout-actions">
+
+                        <!-- Cancel -->
+                        <button class="cancel-logout" @click="go('home')">
+                            ← Cancel
+                        </button>
+
+
+                        <!-- Confirm -->
+                        <button class="confirm-logout" @click="confirmLogout">
+                            🚪 Logout
+                        </button>
+
+                    </div>
+
+
+                    <div class="logout-message">
+                        🌈 Keep learning and have fun!
+                    </div>
+
+                </div>
+
+            </section>
+
             <section v-if="page === 'home'" class="hero">
                 <div><label>✨ LEARN • PLAY • SPEAK • READ</label>
                     <h1>English learning<br><span>made fun!</span></h1>
@@ -484,11 +886,7 @@ function next() { qi.value = qi.value < quiz.length - 1 ? qi.value + 1 : 0; answ
 
 
                 <!-- Consonant Groups -->
-                <div
-                    v-for="group in pronunciationLessons.consonants"
-                    :key="group.category"
-                    class="consonant-section"
-                >
+                <div v-for="group in pronunciationLessons.consonants" :key="group.category" class="consonant-section">
 
                     <!-- Group Title -->
                     <div class="consonant-section-title">
@@ -513,16 +911,10 @@ function next() { qi.value = qi.value < quiz.length - 1 ? qi.value + 1 : 0; answ
                     <!-- Consonant List -->
                     <div class="consonant-grid">
 
-                        <article
-                            v-for="consonant in group.sounds"
-                            :key="consonant.sound"
-                            class="consonant-card"
-                        >
+                        <article v-for="consonant in group.sounds" :key="consonant.sound" class="consonant-card">
 
                             <!-- IPA Sound -->
-                            <button
-                                class="consonant-sound"
-                                @click="playSound(consonant.audio)"
+                            <button class="consonant-sound" @click="playSound(consonant.audio)"
                                 :title="'Hear ' + consonant.name">
                                 {{ consonant.sound }}
                             </button>
@@ -552,11 +944,8 @@ function next() { qi.value = qi.value < quiz.length - 1 ? qi.value + 1 : 0; answ
                             <!-- Example Words -->
                             <div class="consonant-examples">
 
-                                <button
-                                    v-for="example in consonant.examples"
-                                    :key="example.word"
-                                    @click="speak(example.word)"
-                                >
+                                <button v-for="example in consonant.examples" :key="example.word"
+                                    @click="speak(example.word)">
                                     🔊
                                     <strong>
                                         {{ example.word }}
@@ -571,16 +960,13 @@ function next() { qi.value = qi.value < quiz.length - 1 ? qi.value + 1 : 0; answ
 
 
                             <!-- Hear All Examples -->
-                            <button
-                                class="consonant-hear"
-                                @click="
-                                    speak(
-                                        consonant.examples
-                                            .map(example => example.word)
-                                            .join(', ')
-                                    )
-                                "
-                            >
+                            <button class="consonant-hear" @click="
+                                speak(
+                                    consonant.examples
+                                        .map(example => example.word)
+                                        .join(', ')
+                                )
+                                ">
                                 🔊 Hear Examples
                             </button>
 
