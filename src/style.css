@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Noto+Sans+Khmer:wght@400;600;700&display=swap');
 
+:root {
+    --sidebar-width: 240px;
+    --mobile-sidebar-width: 270px;
+
+    --page-padding: 30px;
+    --mobile-padding: 16px;
+
+    --primary: #5865df;
+    --text-dark: #26385c;
+    --text-muted: #71809b;
+
+    --page-bg: #f7faff;
+}
+
 * {
     box-sizing: border-box
 }
@@ -3467,4 +3481,485 @@ body {
 
     }
 
+}
+/* new added */
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.app-layout {
+    min-height: 100vh;
+    width: 100%;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.left-sidebar {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: var(--sidebar-width);
+
+    display: flex;
+    flex-direction: column;
+
+    background: #ffffff;
+
+    border-right: 1px solid #e5eaf2;
+
+    box-shadow:
+        3px 0 15px rgba(0, 0, 0, .06);
+
+    z-index: 1000;
+
+    overflow: hidden;
+
+    transition:
+        transform .25s ease,
+        width .25s ease;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.sidebar-logo {
+    width: 100%;
+    min-height: 75px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 15px;
+
+    border-bottom: 1px solid #edf0f5;
+
+    overflow: hidden;
+}
+
+.logo-icon {
+    flex: 0 0 auto;
+
+    font-size: 25px;
+}
+
+.logo-text {
+    min-width: 0;
+
+    flex: 1;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    color: var(--text-dark);
+
+    font-size: 16px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   MENU
+   ========================================================= */
+
+.menu-list {
+    flex: 1;
+
+    margin: 0;
+
+    padding: 18px 12px;
+
+    list-style: none;
+
+    overflow-y: auto;
+}
+
+.menu-list li {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 5px;
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+
+    color: var(--text-muted);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition: .2s;
+}
+
+.menu-list li:hover {
+    background: #f1f5ff;
+
+    color: var(--primary);
+
+    transform: translateX(2px);
+}
+
+.menu-list li.active {
+    background: #e9edff;
+
+    color: #4d5fd5;
+
+    font-weight: 800;
+
+    border-left: 4px solid var(--primary);
+
+    padding-left: 10px;
+}
+
+
+/* =========================================================
+   SIDEBAR FOOTER
+   ========================================================= */
+
+.sidebar-footer {
+    flex-shrink: 0;
+
+    padding: 12px;
+
+    border-top: 1px solid #edf0f5;
+}
+
+.sidebar-footer button {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #fff1f2;
+
+    color: #e04b61;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.main-content {
+    width: calc(100% - var(--sidebar-width));
+
+    min-height: 100vh;
+
+    margin-left: var(--sidebar-width);
+
+    padding: var(--page-padding);
+
+    background: var(--page-bg);
+
+    overflow-x: hidden;
+
+    transition:
+        margin-left .25s ease,
+        width .25s ease;
+}
+
+
+/* =========================================================
+   MOBILE BUTTON
+   ========================================================= */
+
+.mobile-menu-button {
+    display: none;
+
+    position: fixed;
+
+    top: 14px;
+    left: 14px;
+
+    width: 46px;
+    height: 46px;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: #4f5fd2;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 20px rgba(30, 60, 100, .15);
+
+    z-index: 1200;
+}
+
+
+/* =========================================================
+   OVERLAY
+   ========================================================= */
+
+.sidebar-overlay {
+    display: none;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    :root {
+        --sidebar-width: 220px;
+    }
+
+    .main-content {
+        padding: 24px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .left-sidebar {
+        width: var(--mobile-sidebar-width);
+
+        transform: translateX(-100%);
+    }
+
+    .left-sidebar.sidebar-open {
+        transform: translateX(0);
+    }
+
+
+    .main-content {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding:
+            75px
+            var(--mobile-padding)
+            25px;
+    }
+
+
+    .mobile-menu-button {
+        display: flex;
+    }
+
+
+    .sidebar-overlay {
+        position: fixed;
+
+        inset: 0;
+
+        display: block;
+
+        background:
+            rgba(20, 35, 60, .40);
+
+        backdrop-filter: blur(2px);
+
+        z-index: 900;
+    }
+
+
+    .sidebar-logo {
+        min-height: 68px;
+    }
+
+
+    .menu-list li {
+        padding: 13px 14px;
+
+        font-size: 14px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    :root {
+        --mobile-sidebar-width: 245px;
+    }
+
+    .main-content {
+        padding:
+            70px
+            12px
+            20px;
+    }
+
+    .mobile-menu-button {
+        width: 44px;
+        height: 44px;
+
+        top: 12px;
+        left: 12px;
+    }
+
+    .logo-text {
+        font-size: 14px;
+    }
+
+    .menu-list {
+        padding: 14px 10px;
+    }
+
+    .menu-list li {
+        padding: 11px 12px;
+
+        font-size: 13px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    :root {
+        --mobile-sidebar-width: 225px;
+    }
+
+    .main-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .logo-text {
+        font-size: 13px;
+    }
+
+}
+
+.games-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+@media (max-width: 1000px) {
+
+    .games-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .games-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .games-header-image {
+        width: 70px;
+        height: 70px;
+    }
+
+    .games-footer {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+}
+
+.card,
+.vowel-card,
+.diphthong-card,
+.consonant-card,
+.game-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    max-width: 100%;
 }

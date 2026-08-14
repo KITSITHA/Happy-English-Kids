@@ -143,27 +143,7 @@ const confirmLogout = () => {
 </script>
 <template>
     <div class="app">
-        <!-- <header v-if="isLoggedIn">
-            <div class="brand" @click="go('home')"><b>🌈</b><strong>Happy English <i>Kids</i></strong></div>
-            <nav><button :class="{ on: page === 'home' }" @click="go('home')">🏠 Home</button><button
-                    :class="{ on: page === 'alphabet' }" @click="go('alphabet')">🔤 A–Z</button><button
-                    :class="{ on: page === 'phonics' }" @click="go('phonics')">🔊 Phonics</button><button
-                    :class="{ on: page === 'vocab' }" @click="go('vocab')">📚 Vocabulary</button><button
-                    :class="{ on: page === 'games' }" @click="go('games')">🎮 Games</button>
-                <button :class="{ on: page === 'vowels' }" @click="go('vowels')">
-                    🔤 Vowels
-                </button>
-                <button :class="{ on: page === 'diphthongs' }" @click="go('diphthongs')">
-                    🌈 Diphthongs
-                </button>
-                <button :class="{ on: page === 'consonants' }" @click="go('consonants')">
-                    🔡 Consonants
-                </button>
-            </nav>
-        </header> -->
-        <!-- ==========================================
-     SIDE MENU
-     ========================================== -->
+    <!-- ========================================== SIDE MENU========================================== -->
         <!-- LEFT SIDEBAR -->
          <aside v-if="isLoggedIn && page !== 'logout'" class="left-sidebar">
         <!-- <aside class="left-sidebar"> -->
